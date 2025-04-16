@@ -24,9 +24,16 @@
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.example.myapplication.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
         android:id="@+id/navigation_map_and_list_of_rooms"
         android:name="com.example.myapplication.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_map_and_list_of_rooms" />
+
 
 </navigation>
