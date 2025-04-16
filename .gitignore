@@ -2,6 +2,11 @@
 # Gradle & Build Files
 # =========================
 .gradle/
+!.gradle/buildOutputCleanup/
+!.gradle/checksums/
+!.gradle/executionHistory/
+!.gradle/fileHashes/
+!.gradle/dependencies-accessors/
 build/
 */build/
 !gradle-wrapper.jar  # Keep Gradle wrapper for easier setup
@@ -17,6 +22,8 @@ local.properties
 # Android Studio & IntelliJ IDEA
 # =========================
 .idea/
+!.idea/modules.xml
+!.idea/gradle.xml
 *.iml
 misc.xml
 deploymentTargetDropDown.xml
