@@ -2,11 +2,7 @@
 # Gradle & Build Files
 # =========================
 .gradle/
-!.gradle/buildOutputCleanup/
-!.gradle/checksums/
-!.gradle/executionHistory/
-!.gradle/fileHashes/
-!.gradle/dependencies-accessors/
+
 build/
 */build/
 !gradle-wrapper.jar  # Keep Gradle wrapper for easier setup
