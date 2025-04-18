@@ -19,6 +19,11 @@ import kotlinx.coroutines.launch
 class DepartureBoardFragment : Fragment(R.layout.fragment_departure_board) {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val stationIds = mapOf(
+        "DR Byen" to "008663311",
+        "Island Brygge" to "008603310",
+    )
+    private val STATION_ID = "008663311" // DR BYEN
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,13 +32,13 @@ class DepartureBoardFragment : Fragment(R.layout.fragment_departure_board) {
         swipeRefresh.setOnRefreshListener {
             refreshData()
         }
-
+        sharedViewModel.loadSingleStationDepartures(STATION_ID)
         observeDepartures(swipeRefresh)
-        observeError()
+        observeError(swipeRefresh)
     }
 
     private fun refreshData() {
-        sharedViewModel.loadDepartures("stationId") // Replace with actual station ID
+        sharedViewModel.loadSingleStationDepartures(STATION_ID) // Replace with actual station ID
     }
 
     private fun observeDepartures(swipeRefresh: SwipeRefreshLayout) {
@@ -45,11 +50,12 @@ class DepartureBoardFragment : Fragment(R.layout.fragment_departure_board) {
         }
     }
 
-    private fun observeError() {
+    private fun observeError(swipeRefresh: SwipeRefreshLayout) {
         lifecycleScope.launch {
             sharedViewModel.errorMessage.collect { error:String? ->
                 if (!error.isNullOrEmpty()) {
                     showError(error)
+                    swipeRefresh.isRefreshing = false// STOPS THE SPINNER ON ERROR
                 }
             }
         }

@@ -4,6 +4,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import com.example.myapplication.data.departures.Departure
+import com.example.myapplication.network.ApiClient
+import com.example.myapplication.network.DepartureBoardResponse
+import retrofit2.Response
 
 class SharedViewModel : ViewModel() {
     //Departure Board
@@ -13,12 +16,31 @@ class SharedViewModel : ViewModel() {
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage
 
-    fun loadDepartures(stationId: String) {
+    fun loadSingleStationDepartures(stationId: String) {
         viewModelScope.launch {
+            _errorMessage.value = null // Reset error message before API call
             try {
-                // Your API call implementation here
+                //Get API instance
+                val api = ApiClient.instance
+                //making API call
+                println("DEBUG: Calling API with Station ID: $stationId")
+                val response: Response<DepartureBoardResponse> =
+                api.getDepartures(
+                    accessId = "edb47416-fc62-4c53-af7d-b4e563f88ab7",//API KEY
+                    id = stationId,
+                )
+                //Handle the response
+                if (response.isSuccessful) {
+                    _departures.value = response.body()?.DepartureBoard?.Departure ?: emptyList()
+                } else {
+                    _errorMessage.value = "API error: ${response.code()}"
+                }
+
+                // Your API call implementation here -> mock purposes
+//                _departures.value = listOf(
+//                    Departure("1", "10:00", "destination_station_mock", "1"))
             } catch (e: Exception) {
-                _errorMessage.value = "Error: ${e.message}"
+                _errorMessage.value = "Network error: ${e.message}"
             }
         }
     }
@@ -43,7 +65,7 @@ class SharedViewModel : ViewModel() {
 
 }
 
-//    fun loadDepartures(stationId: String) {
+//    fun loadSingleStationDepartures(stationId: String) {
 //        viewModelScope.launch {
 //            try {
 //                // Your API call implementation here
