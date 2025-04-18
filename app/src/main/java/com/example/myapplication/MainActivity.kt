@@ -1,6 +1,8 @@
 package com.example.myapplication
 
+import SharedViewModel
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -10,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    val sharedViewMode: SharedViewModel by viewModels()
 
     private lateinit var binding: ActivityMainBinding
 

@@ -1,0 +1,79 @@
+package com.example.myapplication.ui.home
+
+import SharedViewModel
+import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.myapplication.R
+import com.example.myapplication.data.departures.Departure
+import com.example.myapplication.ui.DepartureAdapter
+import kotlinx.coroutines.launch
+
+class DepartureBoardFragment : Fragment(R.layout.fragment_departure_board) {
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val swipeRefresh: SwipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
+        swipeRefresh.setOnRefreshListener {
+            refreshData()
+        }
+
+        observeDepartures(swipeRefresh)
+        observeError()
+    }
+
+    private fun refreshData() {
+        sharedViewModel.loadDepartures("stationId") // Replace with actual station ID
+    }
+
+    private fun observeDepartures(swipeRefresh: SwipeRefreshLayout) {
+        lifecycleScope.launch {
+            sharedViewModel.departures.collect { departures ->
+                updateDepartureList(departures)
+                swipeRefresh.isRefreshing = false
+            }
+        }
+    }
+
+    private fun observeError() {
+        lifecycleScope.launch {
+            sharedViewModel.errorMessage.collect { error:String? ->
+                if (!error.isNullOrEmpty()) {
+                    showError(error)
+                }
+            }
+        }
+    }
+
+    private fun updateDepartureList(departures: List<Departure>) {
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.departures_recycler_view)
+
+        val adapter = DepartureAdapter(departures) { departure ->
+            Toast.makeText(context, "Selected ${departure.destination}", Toast.LENGTH_SHORT).show()
+        }
+        recyclerView?.apply {
+            layoutManager = LinearLayoutManager(context)
+            this.adapter = adapter
+        }
+
+        if (departures.isEmpty()) {
+            view?.findViewById<TextView>(R.id.empty_state_text)?.visibility = View.VISIBLE
+        } else {
+            view?.findViewById<TextView>(R.id.empty_state_text)?.visibility = View.GONE
+        }
+    }
+
+    private fun showError(error: String) {
+        Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+    }
+}
