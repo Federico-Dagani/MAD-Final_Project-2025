@@ -27,7 +27,7 @@ class DepartureBoardFragment : Fragment(R.layout.fragment_departure_board) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        //Sets up the SwipeRefreshLayout -> recyclerView is part of the layout
         val swipeRefresh: SwipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
         swipeRefresh.setOnRefreshListener {
             refreshData()
@@ -64,8 +64,9 @@ class DepartureBoardFragment : Fragment(R.layout.fragment_departure_board) {
     private fun updateDepartureList(departures: List<Departure>) {
         val recyclerView = view?.findViewById<RecyclerView>(R.id.departures_recycler_view)
 
-        val adapter = DepartureAdapter(departures) { departure ->
-            Toast.makeText(context, "Selected ${departure.destination}", Toast.LENGTH_SHORT).show()
+        val adapter = DepartureAdapter(departures) //possibly useless function
+        { departure ->
+            Toast.makeText(context, "Selected ${departure.direction}", Toast.LENGTH_SHORT).show()
         }
         recyclerView?.apply {
             layoutManager = LinearLayoutManager(context)

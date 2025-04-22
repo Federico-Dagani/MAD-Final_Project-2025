@@ -11,15 +11,15 @@ import com.example.myapplication.data.departures.Departure
 
 class DepartureAdapter(
     private val departures: List<Departure>,
-    private val onItemClick: (Departure) -> Unit
+    private val onItemClick: (Departure) -> Unit    // Callback for item click->not sure if we will implement
 ) : RecyclerView.Adapter<DepartureAdapter.DepartureViewHolder>() {
 
     inner class DepartureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(departure: Departure) {
-            itemView.findViewById<TextView>(R.id.destination_text).text = departure.destination
             itemView.findViewById<TextView>(R.id.time_text).text = departure.time
+            itemView.findViewById<TextView>(R.id.direction_text).text = departure.direction
             itemView.findViewById<TextView>(R.id.track_text).text = departure.track ?: "-"
-            itemView.setOnClickListener { onItemClick(departure) }
+            itemView.setOnClickListener { onItemClick(departure) } //prepped for above mentioned Callback
         }
     }
 

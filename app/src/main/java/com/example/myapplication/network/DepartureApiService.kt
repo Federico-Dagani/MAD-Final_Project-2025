@@ -10,7 +10,7 @@ interface DepartureApiService {
     // results in https://www.rejseplanen.dk/api/departureBoard?...
     suspend fun getDepartures(
         //Adds ?accessId=YOUR_KEY to the URL
-        @Query("accessId") accessId: String,
+        @Query("accessId") accessId: String, //passed in in SharedViewModel
         @Query("id") id: String,
         @Query("format") format: String = "json",
     ): Response<DepartureBoardResponse> //wraps the response in a Response object
