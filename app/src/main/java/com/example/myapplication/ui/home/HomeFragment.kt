@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentHomeBinding
 import androidx.room.Room
 import com.example.myapplication.data.AppDatabase
 import com.example.myapplication.ui.home.HomeViewModelFactory
-
 
 class HomeFragment : Fragment() {
 
@@ -25,6 +25,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root = binding.root
 

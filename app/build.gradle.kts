@@ -52,6 +52,15 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    //SwipeRefreshLayout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    //RetrofitCore = HTTP requests library
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    //Gson = JSON parsing library to Kotlin objects
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    TODO@
+//OkHttp = HTTP client for Retrofit for debugging (Logs network requests/responses) REMOVE IN PRODUCTION
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
     implementation ("com.google.code.gson:gson:2.10.1")
 
