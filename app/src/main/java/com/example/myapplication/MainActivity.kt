@@ -8,6 +8,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
+import androidx.room.Room
+import com.example.myapplication.data.AppDatabase
+import com.example.myapplication.data.loadMockData
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +21,13 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "school.db"
+        ).build()
+
+        loadMockData(this, db)
 
         val navView: BottomNavigationView = binding.navigationBottom
 
