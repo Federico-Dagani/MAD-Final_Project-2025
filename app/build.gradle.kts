@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    //google maps
+    alias(libs.plugins.map.secret)
+
     id("kotlin-kapt")
 }
 
@@ -59,6 +62,9 @@ dependencies {
 //OkHttp = HTTP client for Retrofit for debugging (Logs network requests/responses) REMOVE IN PRODUCTION
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
+    implementation ("com.google.code.gson:gson:2.10.1")
+
+
     //  Room dependencies
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
@@ -66,6 +72,9 @@ dependencies {
 
     //  Coroutines (optional, but recommended)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    //google maps
+    implementation(libs.google.maps)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

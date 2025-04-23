@@ -1,13 +1,28 @@
 package com.example.myapplication.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.example.myapplication.data.AppDatabase
+import com.example.myapplication.data.RoomEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val db: AppDatabase) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private val _rooms = MutableLiveData<List<RoomEntity>>()
+    val rooms: LiveData<List<RoomEntity>> = _rooms
+
+    fun loadAllRooms() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val roomList = db.roomDao().getAllRooms()
+            _rooms.postValue(roomList)
+        }
     }
-    val text: LiveData<String> = _text
+
+    fun loadAvailableRooms() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val currentTime = System.currentTimeMillis()
+            val availableRooms = db.eventDao().getAvailableRooms(currentTime)
+            _rooms.postValue(availableRooms)
+        }
+    }
 }
