@@ -10,6 +10,7 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
+import com.example.myapplication.ui.departures.DepartureBoardFragment
 
 class HomeFragment : Fragment() {
 
