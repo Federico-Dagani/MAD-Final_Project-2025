@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    //google maps
+    alias(libs.plugins.map.secret)
+
     id("kotlin-kapt")
 }
 
@@ -57,6 +60,9 @@ dependencies {
 
     //  Coroutines (optional, but recommended)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    //google maps
+    implementation(libs.google.maps)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
