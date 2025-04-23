@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
@@ -42,13 +41,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         // childFragmentManager is used to manage fragments nested inside a Fragment (like SupportMapFragment)
         val mapFragment = childFragmentManager.findFragmentById(R.id.id_map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
-
-        /*
-        val textView: TextView = binding.textMap
-        mapViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-         */
 
         return root
     }

@@ -1,8 +1,6 @@
 package com.example.myapplication.ui.map
 
 import android.graphics.Color
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Polygon
@@ -10,12 +8,8 @@ import com.google.android.gms.maps.model.PolygonOptions
 
 class MapViewModel : ViewModel(){
 
-    //private val _text = MutableLiveData<String>().apply { value = "This is map Fragment" }
-
     val floorPolygons = mutableMapOf<String, PolygonOptions>()
     var currentPolygon: Polygon? = null
-
-    //val text: LiveData<String> = _text
 
     fun setPolygonForFloor() {
         floorPolygons["0"] = PolygonOptions()
