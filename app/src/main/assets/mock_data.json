@@ -1,0 +1,83 @@
+{
+    "rooms": [
+
+        {
+            "roomId": "101A",
+            "type": "classroom",
+            "floor": 1
+        },
+        {
+            "roomId": "301D",
+            "type": "classroom",
+            "floor": 3
+        },
+
+
+        {
+            "roomId": "2A01",
+            "type": "skybox",
+            "floor": 2
+        },
+        {
+            "roomId": "2A03",
+            "type": "skybox",
+            "floor": 2
+        },
+        {
+            "roomId": "2A05",
+            "type": "skybox",
+            "floor": 2
+        },
+        {
+            "roomId": "3A05",
+            "type": "skybox",
+            "floor": 3
+        },
+
+
+        {
+            "roomId": "Aud0",
+            "type": "Auditorium",
+            "floor": 0
+        },
+        {
+            "roomId": "Aud1",
+            "type": "Auditorium",
+            "floor": 0
+        },
+        {
+            "roomId": "Aud2",
+            "type": "Auditorium",
+            "floor": 0
+        }
+
+
+    ],
+    "events": [
+        {
+            "roomId": "101A",
+            "startTime": 1713861300000,
+            "endTime": 1713866100000
+        },
+        {
+            "roomId": "Aud2",
+            "startTime": 1713861300000,
+            "endTime": 1713866100000
+        },
+        {
+            "roomId": "301D",
+            "startTime": 1700000000000,
+            "endTime": 1800000000000
+        },
+        {
+            "roomId": "2A03",
+            "startTime": 1700000000000,
+            "endTime": 1800000000000
+        },
+        {
+            "roomId": "Aud0",
+            "startTime": 1700000000000,
+            "endTime": 1800000000000
+        }
+    ]
+}
