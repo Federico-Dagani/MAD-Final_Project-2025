@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.myapplication.R
-import com.example.myapplication.databinding.FragmentDepartureHomeBinding
+import com.example.myapplication.databinding.FragmentDepartureBinding
 import com.example.myapplication.ui.departures.DepartureBoardFragment
 
 class DepartureHomeFragmentFixAndDeleteLater : Fragment() {
 
-    private var _binding: FragmentDepartureHomeBinding? = null
+    private var _binding: FragmentDepartureBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -20,7 +20,7 @@ class DepartureHomeFragmentFixAndDeleteLater : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_departure_home, container, false)
+        return inflater.inflate(R.layout.fragment_departure, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
