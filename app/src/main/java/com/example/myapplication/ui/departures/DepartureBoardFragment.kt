@@ -16,7 +16,7 @@ import com.example.myapplication.data.departures.Departure
 import com.example.myapplication.ui.DepartureAdapter
 import kotlinx.coroutines.launch
 
-class DepartureBoardFragment : Fragment(R.layout.fragment_departure_board) {
+class DepartureBoardFragment : Fragment(R.layout.frame_departure_board) {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val stationIds = mapOf(
