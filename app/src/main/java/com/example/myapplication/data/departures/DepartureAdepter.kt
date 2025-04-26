@@ -10,9 +10,14 @@ import com.example.myapplication.R
 import com.example.myapplication.data.departures.Departure
 
 class DepartureAdapter(
-    private val departures: List<Departure>,
-    private val onItemClick: (Departure) -> Unit    // Callback for item click->not sure if we will implement
+    private var departures: List<Departure>,
+    private val onItemClick: (Departure) -> Unit
 ) : RecyclerView.Adapter<DepartureAdapter.DepartureViewHolder>() {
+
+    fun updateDepartures(newDepartures: List<Departure>) {
+        departures = newDepartures
+        notifyDataSetChanged()
+    }
 
     inner class DepartureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(departure: Departure) {
