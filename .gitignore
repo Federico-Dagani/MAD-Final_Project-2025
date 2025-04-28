@@ -3,6 +3,9 @@
 # =========================
 .gradle/
 
+gradle/
+!gradle/libs.versions.toml
+
 build/
 */build/
 !gradle-wrapper.jar  # Keep Gradle wrapper for easier setup

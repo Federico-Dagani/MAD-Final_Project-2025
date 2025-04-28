@@ -6,31 +6,53 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentHomeBinding
+import androidx.room.Room
+import com.example.myapplication.data.AppDatabase
+import com.example.myapplication.ui.home.HomeViewModelFactory
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var viewModel: HomeViewModel
+    private lateinit var adapter: RoomAdapter
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val root = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val db = Room.databaseBuilder(
+            requireContext().applicationContext,
+            AppDatabase::class.java, "school.db"
+        ).build()
+
+        val factory = HomeViewModelFactory(db)
+        viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+
+        adapter = RoomAdapter(emptyList())
+        binding.roomRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.roomRecyclerView.adapter = adapter
+
+        viewModel.rooms.observe(viewLifecycleOwner) {
+            adapter.update(it)
         }
+
+        // Initial load
+        viewModel.loadAllRooms()
+
+        // Filter button
+        binding.btnFilterAvailable.setOnClickListener {
+            viewModel.loadAvailableRooms()
+        }
+
         return root
     }
 
