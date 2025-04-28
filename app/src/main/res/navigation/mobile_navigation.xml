@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_departures"
-        android:name="com.example.myapplication.ui.departures.DepartureHomeFragmentFixAndDeleteLater"
+        android:name="com.example.myapplication.ui.departures.DepartureHomeFragmentAggregated"
         android:label="@string/title_departures"
         tools:layout="@layout/fragment_departure" />
 

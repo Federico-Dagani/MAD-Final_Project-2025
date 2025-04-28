@@ -7,33 +7,33 @@
     android:orientation="vertical"
     tools:context=".ui.departures.DepartureHomeFragmentAggregated">
 
-    <!-- Horizontal container that will switch orientation -->
+    <!-- Horizontal container for landscape -->
     <LinearLayout
         android:id="@+id/departure_boards_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:baselineAligned="false">
 
-        <!-- Top/Left Departure Board -->
+        <!-- Left Departure Board -->
         <FrameLayout
             android:id="@+id/departure_board_container_one"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <!-- Divider -->
+        <!-- Vertical Divider -->
         <View
             android:id="@+id/departure_divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
 
-        <!-- Bottom/Right Departure Board -->
+        <!-- Right Departure Board -->
         <FrameLayout
             android:id="@+id/departure_board_container_two"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
     </LinearLayout>
 
