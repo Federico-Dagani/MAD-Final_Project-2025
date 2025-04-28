@@ -73,8 +73,11 @@ dependencies {
     //  Coroutines (optional, but recommended)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    //google maps
+    //google maps usage
     implementation(libs.google.maps)
+    implementation("com.google.android.gms:play-services-maps:19.2.0")
+    // gps position
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

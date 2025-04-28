@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
@@ -16,6 +17,10 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.IndoorBuilding
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolygonOptions
+
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.snackbar.Snackbar
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
@@ -62,6 +67,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(itu_location, 17.5F))
 
+        mapViewModel.initializeRooms()
+
         //set polygons BUILDING A
         mapViewModel.setPolygonForFloor()
 
@@ -74,14 +81,18 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         gMap.setOnIndoorStateChangeListener(object : GoogleMap.OnIndoorStateChangeListener {
             override fun onIndoorBuildingFocused() {
                 // Optional - no action needed
+                checkFloor()
             }
 
             override fun onIndoorLevelActivated(building: IndoorBuilding) {
                 val activeLevel = building.activeLevelIndex
                 val levelName = building.levels[activeLevel].name
                 drawPolygonForFloor(levelName)
+                checkFloor()
             }
         })
+
+        pointToRoom("1A01")
 
     }
 
@@ -99,10 +110,69 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         )
     }
 
+
     private fun drawPolygonForFloor(floorName: String) {
         mapViewModel.currentPolygon?.remove()
         mapViewModel.floorPolygons[floorName]?.let {
             mapViewModel.currentPolygon = gMap.addPolygon(it)
         }
     }
+
+    private var switchFloorSnackbar: Snackbar? = null
+    private var pendingRoomFloor: String? = null
+
+    private fun pointToRoom(roomCode: String) {
+
+        val room = mapViewModel.getRoom(roomCode)
+
+        if (room == null) {
+            Toast.makeText(requireContext(), "Room not found", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val building = gMap.focusedBuilding
+        val activeFloorName = building?.levels?.getOrNull(building.activeLevelIndex)?.name
+
+        if (activeFloorName != room.floor) {
+            showSwitchFloorSnackbar(room.floor)
+        } else {
+            dismissSwitchFloorSnackbar()
+        }
+
+        // Center camera to the room
+        gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(room.location, 20f))
+
+        // Add a marker
+        gMap.addMarker(
+            MarkerOptions()
+                .position(room.location)
+                .title(room.name)
+                .icon(BitmapDescriptorFactory.defaultMarker())
+        )
+    }
+
+    private fun showSwitchFloorSnackbar(targetFloor: String) {
+        dismissSwitchFloorSnackbar() // Dismiss any existing one first
+
+        pendingRoomFloor = targetFloor
+
+        switchFloorSnackbar = Snackbar.make(requireView(), "Your room is at floor $targetFloor, please select it", Snackbar.LENGTH_INDEFINITE)
+        switchFloorSnackbar?.show()
+    }
+
+    private fun dismissSwitchFloorSnackbar() {
+        switchFloorSnackbar?.dismiss()
+        switchFloorSnackbar = null
+        pendingRoomFloor = null
+    }
+
+    private fun checkFloor() {
+        val building = gMap.focusedBuilding
+        val activeFloorName = building?.levels?.getOrNull(building.activeLevelIndex)?.name
+
+        if (pendingRoomFloor != null && activeFloorName == pendingRoomFloor) {
+            dismissSwitchFloorSnackbar()
+        }
+    }
+
 }
