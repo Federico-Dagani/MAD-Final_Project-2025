@@ -3,9 +3,10 @@
 
     <!-- google maps: we declare the permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION "/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION "/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
 
     <application
         android:allowBackup="true"
@@ -31,7 +32,7 @@
         <!-- google maps: We attach the API from google cloud-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${GOOGLE_MAPS_API_KEY}"/>
+            android:value="AIzaSyAyIRKbAMqPdEm-UecqcAPryXwRjmYmCQQ"/>
 
     </application>
 

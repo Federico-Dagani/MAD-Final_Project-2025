@@ -52,6 +52,18 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    //SwipeRefreshLayout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    //RetrofitCore = HTTP requests library
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    //Gson = JSON parsing library to Kotlin objects
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    TODO@
+//OkHttp = HTTP client for Retrofit for debugging (Logs network requests/responses) REMOVE IN PRODUCTION
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    implementation ("com.google.code.gson:gson:2.10.1")
+
 
     //  Room dependencies
     implementation("androidx.room:room-runtime:2.6.1")
@@ -61,8 +73,11 @@ dependencies {
     //  Coroutines (optional, but recommended)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    //google maps
+    //google maps usage
     implementation(libs.google.maps)
+    implementation("com.google.android.gms:play-services-maps:19.2.0")
+    // gps position
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

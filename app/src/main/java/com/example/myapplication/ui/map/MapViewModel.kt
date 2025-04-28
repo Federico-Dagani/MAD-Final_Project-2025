@@ -10,12 +10,26 @@ import com.google.android.gms.maps.model.PolygonOptions
 
 class MapViewModel : ViewModel(){
 
-    //private val _text = MutableLiveData<String>().apply { value = "This is map Fragment" }
-
     val floorPolygons = mutableMapOf<String, PolygonOptions>()
     var currentPolygon: Polygon? = null
 
-    //val text: LiveData<String> = _text
+    val rooms = mutableListOf<RoomGMaps>()
+
+    fun getRoom(roomCode: String): RoomGMaps? {
+        return rooms.find { it.code == roomCode }
+    }
+
+    data class RoomGMaps(
+        val code: String,
+        val name: String,
+        val floor: String,
+        val location: LatLng
+    )
+
+    fun initializeRooms() {
+        rooms.add(RoomGMaps("1A01", "Auditorium 1", "1", LatLng(55.65972329619731, 12.590827318370785)))
+        rooms.add(RoomGMaps("0A02", "Auditorium 2", "0", LatLng(55.65970438340652, 12.591411367333794)))
+    }
 
     fun setPolygonForFloor() {
         floorPolygons["0"] = PolygonOptions()
