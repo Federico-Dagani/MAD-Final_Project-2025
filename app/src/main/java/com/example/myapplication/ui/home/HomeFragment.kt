@@ -2,17 +2,21 @@ package com.example.myapplication.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentHomeBinding
 import androidx.room.Room
+import com.example.myapplication.R
 import com.example.myapplication.data.AppDatabase
 import com.example.myapplication.ui.home.HomeViewModelFactory
-
 
 class HomeFragment : Fragment() {
 
@@ -21,6 +25,13 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var adapter: RoomAdapter
+
+    private var showingAvailableOnly = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -44,15 +55,35 @@ class HomeFragment : Fragment() {
             adapter.update(it)
         }
 
-        // Initial load
+        // Load everything at start
         viewModel.loadAllRooms()
 
-        // Filter button
-        binding.btnFilterAvailable.setOnClickListener {
+        return root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_home, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_filter -> {
+                toggleFilter()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    // toggle function
+    private fun toggleFilter() {
+        if (showingAvailableOnly) {
+            viewModel.loadAllRooms()
+        } else {
             viewModel.loadAvailableRooms()
         }
-
-        return root
+        showingAvailableOnly = !showingAvailableOnly
     }
 
     override fun onDestroyView() {

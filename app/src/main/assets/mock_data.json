@@ -29,10 +29,85 @@
             "floor": 2
         },
         {
+            "roomId": "2A07",
+            "type": "skybox",
+            "floor": 2
+        },
+
+
+        {
+            "roomId": "3A01",
+            "type": "skybox",
+            "floor": 3
+        },
+        {
+            "roomId": "3A03",
+            "type": "skybox",
+            "floor": 3
+        },
+        {
             "roomId": "3A05",
             "type": "skybox",
             "floor": 3
         },
+        {
+            "roomId": "3A07",
+            "type": "skybox",
+            "floor": 3
+        },
+
+        {
+            "roomId": "4A01",
+            "type": "skybox",
+            "floor": 4
+        },
+        {
+            "roomId": "4A03",
+            "type": "skybox",
+            "floor": 4
+        },
+        {
+            "roomId": "4A05",
+            "type": "skybox",
+            "floor": 4
+        },
+        {
+            "roomId": "4A07",
+            "type": "skybox",
+            "floor": 4
+        },
+        {
+            "roomId": "4A09",
+            "type": "skybox",
+            "floor": 4
+        },
+
+        {
+            "roomId": "5A01",
+            "type": "skybox",
+            "floor": 5
+        },
+        {
+            "roomId": "5A03",
+            "type": "skybox",
+            "floor": 5
+        },
+        {
+            "roomId": "5A05",
+            "type": "skybox",
+            "floor": 5
+        },
+        {
+            "roomId": "5A07",
+            "type": "skybox",
+            "floor": 5
+        },
+        {
+            "roomId": "5A09",
+            "type": "skybox",
+            "floor": 5
+        },
+
 
 
         {
@@ -49,8 +124,17 @@
             "roomId": "Aud2",
             "type": "Auditorium",
             "floor": 0
+        },
+        {
+            "roomId": "Aud3",
+            "type": "Auditorium",
+            "floor": 2
+        },
+        {
+            "roomId": "Aud4",
+            "type": "Auditorium",
+            "floor": 4
         }
-
 
     ],
     "events": [
