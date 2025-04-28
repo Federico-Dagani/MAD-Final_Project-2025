@@ -2,15 +2,270 @@
     "rooms": [
 
         {
-            "roomId": "101A",
+            "roomId": "2A8",
             "type": "classroom",
-            "floor": 1
+            "floor": 2
         },
         {
-            "roomId": "301D",
+            "roomId": "2A18",
+            "type": "classroom",
+            "floor": 2
+        },
+        {
+            "roomId": "2A20",
+            "type": "classroom",
+            "floor": 2
+        },
+        {
+            "roomId": "2A28",
+            "type": "classroom",
+            "floor": 2
+        },
+        {
+            "roomId": "2A40",
+            "type": "classroom",
+            "floor": 2
+        },
+        {
+            "roomId": "2A42",
+            "type": "classroom",
+            "floor": 2
+        },
+        {
+            "roomId": "2A50",
+            "type": "classroom",
+            "floor": 2
+        },
+        {
+            "roomId": "2A52",
+            "type": "classroom",
+            "floor": 2
+        },
+        {
+            "roomId": "2A54",
+            "type": "classroom",
+            "floor": 2
+        },
+        {
+            "roomId": "2A58",
+            "type": "classroom",
+            "floor": 2
+        },
+        {
+            "roomId": "2A60",
+            "type": "classroom",
+            "floor": 2
+        },
+
+
+        {
+            "roomId": "3A8",
             "type": "classroom",
             "floor": 3
         },
+        {
+            "roomId": "3A12",
+            "type": "classroom",
+            "floor": 3
+        },
+        {
+            "roomId": "3A14",
+            "type": "classroom",
+            "floor": 3
+        },
+        {
+            "roomId": "3A18",
+            "type": "classroom",
+            "floor": 3
+        },
+        {
+            "roomId": "3A20",
+            "type": "classroom",
+            "floor": 3
+        },
+        {
+            "roomId": "3A28",
+            "type": "classroom",
+            "floor": 3
+        },
+        {
+            "roomId": "3A50",
+            "type": "classroom",
+            "floor": 3
+        },
+        {
+            "roomId": "3A52",
+            "type": "classroom",
+            "floor": 3
+        },
+        {
+            "roomId": "3A54",
+            "type": "classroom",
+            "floor": 3
+        },
+        {
+            "roomId": "3A58",
+            "type": "classroom",
+            "floor": 3
+        },
+        {
+            "roomId": "3A60",
+            "type": "classroom",
+            "floor": 3
+        },
+
+
+
+        {
+            "roomId": "4A14",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A16",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A20",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A22",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A30",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A32",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A34",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A42",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A40",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A54",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A56",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A58",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A62",
+            "type": "classroom",
+            "floor": 4
+        },
+        {
+            "roomId": "4A64",
+            "type": "classroom",
+            "floor": 4
+        },
+
+
+
+        {
+            "roomId": "5A8",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A10",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A14",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A16",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A20",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A22",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A30",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A32",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A34",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A40",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A42",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "4A54",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "5A60",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "4A62",
+            "type": "classroom",
+            "floor": 5
+        },
+        {
+            "roomId": "4A64",
+            "type": "classroom",
+            "floor": 5
+        },
+
+
 
 
         {
@@ -29,10 +284,85 @@
             "floor": 2
         },
         {
+            "roomId": "2A07",
+            "type": "skybox",
+            "floor": 2
+        },
+
+
+        {
+            "roomId": "3A01",
+            "type": "skybox",
+            "floor": 3
+        },
+        {
+            "roomId": "3A03",
+            "type": "skybox",
+            "floor": 3
+        },
+        {
             "roomId": "3A05",
             "type": "skybox",
             "floor": 3
         },
+        {
+            "roomId": "3A07",
+            "type": "skybox",
+            "floor": 3
+        },
+
+        {
+            "roomId": "4A01",
+            "type": "skybox",
+            "floor": 4
+        },
+        {
+            "roomId": "4A03",
+            "type": "skybox",
+            "floor": 4
+        },
+        {
+            "roomId": "4A05",
+            "type": "skybox",
+            "floor": 4
+        },
+        {
+            "roomId": "4A07",
+            "type": "skybox",
+            "floor": 4
+        },
+        {
+            "roomId": "4A09",
+            "type": "skybox",
+            "floor": 4
+        },
+
+        {
+            "roomId": "5A01",
+            "type": "skybox",
+            "floor": 5
+        },
+        {
+            "roomId": "5A03",
+            "type": "skybox",
+            "floor": 5
+        },
+        {
+            "roomId": "5A05",
+            "type": "skybox",
+            "floor": 5
+        },
+        {
+            "roomId": "5A07",
+            "type": "skybox",
+            "floor": 5
+        },
+        {
+            "roomId": "5A09",
+            "type": "skybox",
+            "floor": 5
+        },
+
 
 
         {
@@ -49,8 +379,17 @@
             "roomId": "Aud2",
             "type": "Auditorium",
             "floor": 0
+        },
+        {
+            "roomId": "Aud3",
+            "type": "Auditorium",
+            "floor": 2
+        },
+        {
+            "roomId": "Aud4",
+            "type": "Auditorium",
+            "floor": 4
         }
-
 
     ],
     "events": [
