@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -46,6 +47,20 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         // childFragmentManager is used to manage fragments nested inside a Fragment (like SupportMapFragment)
         val mapFragment = childFragmentManager.findFragmentById(R.id.id_map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
+
+        val searchView = root.findViewById<SearchView>(R.id.room_search_view)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                pointToRoom(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                // Optional: do live search if you want
+                return false
+            }
+        })
 
         return root
     }
@@ -91,8 +106,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 checkFloor()
             }
         })
-
-        pointToRoom("1A01")
 
     }
 

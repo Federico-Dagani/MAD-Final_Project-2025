@@ -6,25 +6,23 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
+    <!-- Search bar -->
+    <SearchView
+        android:id="@+id/room_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Enter Room Code"/>
+
+    <!-- Map below the search bar -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/id_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/room_search_view"
         tools:layout="@layout/fragment_map" />
-
-    <!--
-    <TextView
-        android:id="@+id/text_map"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"/>
-    -->
 
 </RelativeLayout>
