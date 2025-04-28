@@ -1,6 +1,9 @@
 package com.example.myapplication
 
+import SharedViewModel
 import android.os.Bundle
+import android.view.Window
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -11,8 +14,10 @@ import com.example.myapplication.databinding.ActivityMainBinding
 import androidx.room.Room
 import com.example.myapplication.data.AppDatabase
 import com.example.myapplication.data.loadMockData
+import com.google.android.material.appbar.MaterialToolbar
 
 class MainActivity : AppCompatActivity() {
+    val sharedViewMode: SharedViewModel by viewModels()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -20,7 +25,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
+
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         val db = Room.databaseBuilder(
             applicationContext,
