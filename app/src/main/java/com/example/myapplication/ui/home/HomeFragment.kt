@@ -1,9 +1,12 @@
 package com.example.myapplication.ui.home
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -21,6 +24,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var adapter: RoomAdapter
+
+    private var isFilteringAvailable = false
+    private var selectedRoomType: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -45,15 +51,42 @@ class HomeFragment : Fragment() {
             adapter.update(it)
         }
 
+        setupSpinner()
+
         // Initial load
         viewModel.loadAllRooms()
 
-        // Filter button
         binding.btnFilterAvailable.setOnClickListener {
-            viewModel.loadAvailableRooms()
+            isFilteringAvailable = !isFilteringAvailable
+            updateRoomList()
+            binding.btnFilterAvailable.text = if (isFilteringAvailable) "Show All Rooms" else "Show Available Rooms"
         }
 
         return root
+    }
+
+    private fun setupSpinner() {
+        val roomTypes = listOf("All", "Skybox", "Classroom", "Auditorium")
+        val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, roomTypes)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerRoomType.adapter = spinnerAdapter
+
+        binding.spinnerRoomType.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                selectedRoomType = if (position == 0) null else roomTypes[position]
+                updateRoomList()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        })
+    }
+
+    private fun updateRoomList() {
+        if (isFilteringAvailable) {
+            viewModel.loadAvailableRooms(selectedRoomType)
+        } else {
+            viewModel.loadAllRooms(selectedRoomType)
+        }
     }
 
     override fun onDestroyView() {
