@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 class RoomAdapter(private var rooms: List<RoomEntity>) :
     RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
 
-    class RoomViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class RoomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val text: TextView = view.findViewById(android.R.id.text1)
     }
 

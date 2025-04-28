@@ -25,8 +25,13 @@ class MapViewModel : ViewModel(){
     )
 
     fun initializeRooms() {
+        // building A
         rooms.add(RoomGMaps("1A01", "Auditorium 1", "1", LatLng(55.65972329619731, 12.590827318370785)))
         rooms.add(RoomGMaps("0A02", "Auditorium 2", "0", LatLng(55.65970438340652, 12.591411367333794)))
+
+        // building F
+        rooms.add(RoomGMaps("2F02", "Room 2 - Floor 2", "2", LatLng(55.658927646458366, 12.589184582254807)))
+
     }
 
     fun setPolygonForFloor() {

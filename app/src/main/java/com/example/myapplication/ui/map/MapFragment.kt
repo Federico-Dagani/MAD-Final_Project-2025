@@ -146,7 +146,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val building = gMap.focusedBuilding
         val activeFloorName = building?.levels?.getOrNull(building.activeLevelIndex)?.name
 
-        if (activeFloorName != room.floor) {
+        if (activeFloorName != room.floor && room.code[1] != 'F') {
             showSwitchFloorSnackbar(room.floor)
         } else {
             dismissSwitchFloorSnackbar()
@@ -169,7 +169,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         pendingRoomFloor = targetFloor
 
-        switchFloorSnackbar = Snackbar.make(requireView(), "Your room is at floor $targetFloor, please select it", Snackbar.LENGTH_INDEFINITE)
+        switchFloorSnackbar = Snackbar.make(requireView(), "Your room is at floor $targetFloor, please select it", Snackbar.LENGTH_INDEFINITE).setTextColor(Color.RED)
         switchFloorSnackbar?.show()
     }
 
