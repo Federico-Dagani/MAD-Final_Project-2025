@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "rooms")
 data class RoomEntity(
     @PrimaryKey val roomId: String,
-    val type: String, //Ideally enumerated
+    val type: String,
     val floor: Int
 )
