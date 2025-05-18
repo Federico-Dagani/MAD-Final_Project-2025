@@ -31,4 +31,32 @@ class HomeViewModel(private val db: AppDatabase) : ViewModel() {
             _rooms.postValue(availableRooms)
         }
     }
+
+    private val _isFilteringAvailable = MutableLiveData<Boolean>(false)
+    val isFilteringAvailable: LiveData<Boolean> = _isFilteringAvailable
+
+    private val _selectedRoomType = MutableLiveData<String?>(null)
+    val selectedRoomType: LiveData<String?> = _selectedRoomType
+
+    fun setFilteringAvailable(filter: Boolean) {
+        _isFilteringAvailable.value = filter
+        updateRoomList()
+    }
+
+    fun setSelectedRoomType(type: String?) {
+        _selectedRoomType.value = type
+        updateRoomList()
+    }
+
+    private fun updateRoomList() {
+        val type = _selectedRoomType.value
+        val filter = _isFilteringAvailable.value ?: false
+        if (filter) {
+            loadAvailableRooms(type)
+        } else {
+            loadAllRooms(type)
+        }
+    }
+
+
 }
