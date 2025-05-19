@@ -56,11 +56,15 @@ class HomeFragment : Fragment() {
         // Initial load
         viewModel.loadAllRooms()
 
-        binding.btnFilterAvailable.setOnClickListener {
-            isFilteringAvailable = !isFilteringAvailable
-            updateRoomList()
-            binding.btnFilterAvailable.text = if (isFilteringAvailable) "Show All Rooms" else "Show Available Rooms"
+        viewModel.isFilteringAvailable.observe(viewLifecycleOwner) { isFiltering ->
+            binding.btnFilterAvailable.text = if (isFiltering) "Show All Rooms" else "Show Available Rooms"
         }
+
+        binding.btnFilterAvailable.setOnClickListener {
+            val current = viewModel.isFilteringAvailable.value ?: false
+            viewModel.setFilteringAvailable(!current)
+        }
+
 
         return root
     }
@@ -71,10 +75,23 @@ class HomeFragment : Fragment() {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerRoomType.adapter = spinnerAdapter
 
+        viewModel.selectedRoomType.observe(viewLifecycleOwner) { selectedType ->
+            val index = when (selectedType) {
+                null -> 0
+                "Skybox" -> 1
+                "Classroom" -> 2
+                "Auditorium" -> 3
+                else -> 0
+            }
+            if (binding.spinnerRoomType.selectedItemPosition != index) {
+                binding.spinnerRoomType.setSelection(index)
+            }
+        }
+
         binding.spinnerRoomType.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                selectedRoomType = if (position == 0) null else roomTypes[position]
-                updateRoomList()
+                val selected = if (position == 0) null else roomTypes[position]
+                viewModel.setSelectedRoomType(selected)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
